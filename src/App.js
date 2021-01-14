@@ -7,11 +7,11 @@ class App extends Component {
 
   state = {  
     counters: [
-      {id: 1, value: 0},
-      {id: 2, value: 0},
-      {id: 3, value: 0},
-      {id: 4, value: 0},
-      {id: 5, value: 0}
+      {id: Math.random()*1000, value: 0},
+      {id: Math.random()*1000, value: 0},
+      {id: Math.random()*1000, value: 0},
+      {id: Math.random()*1000, value: 0},
+      {id: Math.random()*1000, value: 0}
     ]
   }
 
@@ -35,12 +35,18 @@ this.setState({counters})
 this.setState({counters})
     }
 
+    handleAdd = () => {
+      let counters = [...this.state.counters]
+      counters.push({id: Math.random()*1000, value:0})
+      this.setState({counters})
+    }
+
 render() {
 
   return (
     <div className="App container-fluid">
 <Navbar totalCounters={this.state.counters.length}/>
-<Counters counters={this.state.counters} onReset={this.handleReset} onDelete={this.handleDelete} onIncrement={this.handleIncrement}/>
+<Counters counters={this.state.counters} onReset={this.handleReset} onAdd={this.handleAdd} onDelete={this.handleDelete} onIncrement={this.handleIncrement}/>
     </div>
   );
 }
